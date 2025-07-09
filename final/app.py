@@ -10,12 +10,15 @@ import seaborn as sns
 st.set_page_config(page_title="Analisis & Prediksi Penempatan Kerja", layout="wide")
 st.title("🎓 Aplikasi Analisis & Prediksi Penempatan Kerja Mahasiswa")
 
+# Load model
 pkl_filename = "rf_model.pkl"
+try:
+    with open(pkl_filename, 'rb') as file:
+        model = pickle.load(file)
+except FileNotFoundError:
+    st.error("❌ File model 'rf_model.pkl' tidak ditemukan. Pastikan sudah diunggah ke repositori.")
+    st.stop()
 
-with open(pkl_filename, 'rb') as file:
-
-    pickle_model = pickle.load(file)
-    
 # Menu navigasi
 menu = st.sidebar.selectbox("Pilih Halaman", ["📊 EDA", "🔍 Prediksi"])
 
@@ -72,7 +75,7 @@ elif menu == "🔍 Prediksi":
     mba_p = st.slider("Nilai MBA [%]", 40, 100)
     specialisation = st.selectbox("Spesialisasi MBA", ["Mkt&HR", "Mkt&Fin"])
 
-    # Manual Encoding (mengikuti hasil training)
+    # Manual Encoding
     gender = 1 if gender == "Male" else 0
     hsc_s = {"Arts": 0, "Commerce": 1, "Science": 2}[hsc_s]
     degree_t = {"Comm&Mgmt": 0, "Others": 1, "Sci&Tech": 2}[degree_t]
@@ -83,11 +86,14 @@ elif menu == "🔍 Prediksi":
                             workex, etest_p, mba_p, specialisation]])
 
     if st.button("🔮 Prediksi Sekarang"):
-        result = model.best_estimator_.predict(input_data)
+        result = model.predict(input_data)
         if result[0] == 1:
             st.success("✅ Mahasiswa kemungkinan BESAR akan **DITEMPATKAN kerja**.")
         else:
             st.error("⚠️ Mahasiswa kemungkinan **TIDAK ditempatkan kerja**.")
 
+# Footer
 st.markdown("---")
 st.caption("Final Project Data Science — By [Nama Kamu]")
+
+fix(app.py): perbaikan pemanggilan model dan logika prediksi
