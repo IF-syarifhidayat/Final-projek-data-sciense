@@ -10,7 +10,8 @@ st.set_page_config(page_title="Analisis & Prediksi Penempatan Kerja", layout="wi
 st.title("🎓 Aplikasi Analisis & Prediksi Penempatan Kerja Mahasiswa")
 
 # Load model
-with open('rf_model.pkl', 'r') as r: model = r.read()
+with open('rf_model.pkl', 'r') as r: 
+    rf_model.pkl = r.read()
     print('rf_model.pkl')
 # Menu navigasi
 menu = st.sidebar.selectbox("Pilih Halaman", ["📊 EDA", "🔍 Prediksi"])
