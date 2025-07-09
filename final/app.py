@@ -1,3 +1,4 @@
+print(">>> Streamlit berhasil dijalankan")
 
 import streamlit as st
 import numpy as np
@@ -9,11 +10,6 @@ import seaborn as sns
 st.set_page_config(page_title="Analisis & Prediksi Penempatan Kerja", layout="wide")
 st.title("🎓 Aplikasi Analisis & Prediksi Penempatan Kerja Mahasiswa")
 
-# Load model
-# with open('rf_model.pkl', 'r') as r: 
-#     rf_model.pkl = r.read()
-#     print('rf_model.pkl')
-# import pickle
 pkl_filename = "rf_model.pkl"
 
 with open(pkl_filename, 'rb') as file:
