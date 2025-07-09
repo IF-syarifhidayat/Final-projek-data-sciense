@@ -10,8 +10,8 @@ st.set_page_config(page_title="Analisis & Prediksi Penempatan Kerja", layout="wi
 st.title("🎓 Aplikasi Analisis & Prediksi Penempatan Kerja Mahasiswa")
 
 # Load model
-model = pickle.load(open('rf_model.pkl', 'rb'))
-
+with open('rf_model.pkl', 'rb') as file:
+    model = pickle.load(file)
 # Menu navigasi
 menu = st.sidebar.selectbox("Pilih Halaman", ["📊 EDA", "🔍 Prediksi"])
 
