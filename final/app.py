@@ -14,12 +14,12 @@ st.title("🎓 Aplikasi Analisis & Prediksi Penempatan Kerja Mahasiswa")
 #     rf_model.pkl = r.read()
 #     print('rf_model.pkl')
 # import pickle
+pkl_filename = "rf_model.pkl"
 
-with open('rf_model.pkl', 'rb') as r:
-    rf_model = pickle.load(r)
+with open(pkl_filename, 'rb') as file:
 
-print(rf_model)  # atau print(type(rf_model)) untuk cek objeknya
-
+    pickle_model = pickle.load(file)
+    
 # Menu navigasi
 menu = st.sidebar.selectbox("Pilih Halaman", ["📊 EDA", "🔍 Prediksi"])
 
