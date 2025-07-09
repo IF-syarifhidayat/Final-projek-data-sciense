@@ -96,4 +96,3 @@ elif menu == "🔍 Prediksi":
 st.markdown("---")
 st.caption("Final Project Data Science — By [Nama Kamu]")
 
-fix(app.py): perbaikan pemanggilan model dan logika prediksi
